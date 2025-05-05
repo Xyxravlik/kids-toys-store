@@ -7,114 +7,47 @@
   <title>Kids Toys</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Nunito', sans-serif;
-      background: #fefefe;
-    }
+    body { margin:0; font-family: 'Nunito', sans-serif; background:#fefefe; }
     header {
-      background: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background: #fff; display: flex; justify-content: space-between;
+      align-items: center; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    header img {
-      height: 70px;
-    }
-    @media (max-width: 600px) {
-      header img {
-        height: 55px;
-      }
-    }
+    header img { height: 70px; }
+    @media (max-width: 600px) { header img { height: 55px; } }
     nav a {
-      margin-left: 15px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #333;
+      margin-left: 15px; text-decoration: none;
+      font-weight: bold; color: #333;
     }
-    .main {
-      text-align: center;
-      padding: 40px 20px;
-    }
+    .main { text-align: center; padding: 40px 20px; }
     .main a {
-      margin: 10px;
-      padding: 15px 25px;
-      background: #ffcc80;
-      border-radius: 10px;
-      display: inline-block;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .main a:hover {
-      background: #ffc107;
+      margin: 10px; padding: 15px 25px;
+      background: #ffcc80; border-radius: 10px;
+      display: inline-block; text-decoration: none;
+      color: #333; font-weight: bold;
     }
     footer {
-      background: #b2ebf2;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
+      background: #b2ebf2; padding: 20px;
+      text-align: center; font-size: 14px;
     }
-    .chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #fff;
-      width: 300px;
-      max-height: 400px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      border-radius: 12px;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 1000;
+    .chatbot { position: fixed; bottom: 20px; right: 20px; width: 300px;
+      background: #fff; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: none; flex-direction: column; overflow: hidden; z-index: 1000;
     }
-    .chatbot-header {
-      background: #ffb74d;
-      color: white;
-      padding: 10px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .chatbot-body {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      font-size: 14px;
-    }
-    .chatbot-input {
-      display: flex;
-      border-top: 1px solid #ccc;
-    }
+    .chatbot-header { background: #ffb74d; color: white; padding: 10px; text-align: center; font-weight: bold; }
+    .chatbot-body { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+    .chatbot-input { display: flex; border-top: 1px solid #ccc; }
     .chatbot-input input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      outline: none;
+      flex: 1; padding: 10px; border: none; outline: none;
     }
     .chatbot-input button {
-      padding: 10px;
-      background: #ffa726;
-      color: white;
-      border: none;
-      cursor: pointer;
+      padding: 10px; background: #ffa726; color: white; border: none; cursor: pointer;
     }
     .chatbot-icon {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ffb74d;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 10px 20px;
-      font-size: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 999;
+      position: fixed; bottom: 20px; right: 20px;
+      background: #ffb74d; color: white;
+      border: none; border-radius: 30px;
+      padding: 10px 20px; font-size: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; z-index: 999;
     }
   </style>
 </head>
@@ -134,6 +67,8 @@
     <h1>Добро пожаловать в Kids Toys!</h1>
     <a href="boys.html">Игрушки для мальчиков</a>
     <a href="girls.html">Игрушки для девочек</a>
+    <a href="favorites.html">Перейти в избранное</a>
+    <a href="cart.html">Перейти в корзину</a>
   </div>
 
   <footer>&copy; 2025 Kids Toys. Все права защищены.</footer>
@@ -147,8 +82,7 @@
     </div>
   </div>
   <button class="chatbot-icon" id="chatIcon" onclick="toggleChat()">🤖</button>
-
-  <audio id="chatSound" src="https://www.myinstants.com/media/sounds/notification.mp3" preload="auto"></audio>
+  <audio id="chatSound" src="https://notificationsounds.com/storage/sounds/file-sounds-1152-pristine.mp3" preload="auto"></audio>
 
   <script>
     const chatBox = document.getElementById('chatBox');
