@@ -1,1 +1,126 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Заглушка v4.2</title></head><body>Сайт загружается...</body></html>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kids Toys v4.2</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f8f9fa; }
+    header {
+      background: white; display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header img { height: 80px; }
+    nav a {
+      margin-left: 20px; text-decoration: none; font-weight: bold; color: #444;
+    }
+    .main { padding: 40px; text-align: center; }
+    .main a {
+      display: inline-block; margin: 15px; padding: 15px 30px;
+      background: #ffc107; border-radius: 10px; color: black;
+      font-weight: bold; text-decoration: none;
+    }
+    footer { background: #b2ebf2; padding: 15px; text-align: center; font-size: 14px; }
+
+    .chatbot { display: none; position: fixed; bottom: 20px; right: 20px;
+      width: 300px; max-height: 400px; background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 12px;
+      flex-direction: column; overflow: hidden; z-index: 1000;
+    }
+    .chatbot-header {
+      background: #ffa000; color: white; font-weight: bold;
+      text-align: center; padding: 10px;
+    }
+    .chatbot-body { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+    .chatbot-input { display: flex; border-top: 1px solid #ccc; }
+    .chatbot-input input {
+      flex: 1; padding: 10px; border: none;
+    }
+    .chatbot-input button {
+      padding: 10px; background: #ffca28; border: none; cursor: pointer;
+    }
+    .chatbot-icon {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #ffb300; color: white; border: none;
+      padding: 10px 20px; border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); font-size: 18px;
+      cursor: pointer; z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="images/logo.png" alt="Kids Toys Logo"></a>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="boys.html">Для мальчиков</a>
+      <a href="girls.html">Для девочек</a>
+      <a href="favorites.html">Избранное</a>
+      <a href="cart.html">Корзина</a>
+    </nav>
+  </header>
+
+  <div class="main">
+    <h1>Добро пожаловать в Kids Toys!</h1>
+    <p>Лучшие игрушки для мальчиков и девочек — выбери раздел 👇</p>
+    <a href="boys.html">Игрушки для мальчиков</a>
+    <a href="girls.html">Игрушки для девочек</a>
+  </div>
+
+  <footer>&copy; 2025 Kids Toys. Все права защищены.</footer>
+
+  <div class="chatbot" id="chatBox">
+    <div class="chatbot-header">Ассистент</div>
+    <div class="chatbot-body" id="chatContent"></div>
+    <div class="chatbot-input">
+      <input type="text" id="chatInput" placeholder="Ваш вопрос...">
+      <button onclick="sendMessage()">📤</button>
+    </div>
+  </div>
+  <button class="chatbot-icon" id="chatIcon" onclick="toggleChat()">🤖</button>
+  <audio id="chatSound" src="sounds/pling.mp3" preload="auto"></audio>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const chatIcon = document.getElementById('chatIcon');
+    const chatContent = document.getElementById('chatContent');
+    const chatInput = document.getElementById('chatInput');
+    const chatSound = document.getElementById('chatSound');
+    let chatOpened = false;
+
+    function toggleChat() {
+      chatOpened = !chatOpened;
+      chatBox.style.display = chatOpened ? 'flex' : 'none';
+    }
+
+    function sendMessage() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      chatContent.innerHTML += `<div><b>Вы:</b> ${msg}</div>`;
+      chatInput.value = '';
+      setTimeout(() => {
+        const reply = getReply(msg);
+        chatContent.innerHTML += `<div><b>Ассистент:</b> ${reply}</div>`;
+        chatContent.scrollTop = chatContent.scrollHeight;
+      }, 500);
+    }
+
+    function getReply(msg) {
+      msg = msg.toLowerCase();
+      if (msg.includes("девоч") || msg.includes("кукла")) return "Рекомендуем куклу с аксессуарами!";
+      if (msg.includes("мальчик") || msg.includes("машин")) return "Машинки на пульте управления — супер выбор!";
+      if (msg.includes("возраст")) return "У нас есть игрушки от 1 до 12 лет. Уточните возраст?";
+      return "Пожалуйста, уточните ваш вопрос 😊";
+    }
+
+    setTimeout(() => {
+      if (!chatOpened) {
+        chatBox.style.display = 'flex';
+        chatContent.innerHTML += `<div><b>Ассистент:</b> Здравствуйте, чем могу помочь?</div>`;
+        chatSound.play();
+      }
+    }, 15000);
+  </script>
+</body>
+</html>
