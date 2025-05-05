@@ -6,65 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kids Toys</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Nunito', sans-serif;
-      background-color: #fdfdfd;
-    }
+    body { margin:0; font-family: 'Nunito', sans-serif; background: #fefefe; }
     header {
-      background-color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      background: #fff; padding: 10px 20px; display: flex;
+      justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    header img {
-      height: 60px;
-    }
+    header img { height: 50px; }
     nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
+      margin-left: 15px; text-decoration: none;
+      font-weight: bold; color: #333;
     }
     .main {
-      padding: 20px;
+      text-align: center;
+      padding: 40px 20px;
     }
-    .section {
-      margin: 20px 0;
-    }
-    .section a {
-      display: inline-block;
-      padding: 10px 15px;
-      margin: 10px;
-      background-color: #ffcc80;
-      border-radius: 5px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
+    .main a {
+      margin: 10px; padding: 15px 20px;
+      background: #ffcc80; border-radius: 10px;
+      display: inline-block; text-decoration: none;
+      color: #333; font-weight: bold;
     }
     footer {
-      background-color: #80deea;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+      background: #b2ebf2; padding: 20px;
+      text-align: center; font-size: 14px;
     }
     .chatbot-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ffb74d;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 10px 20px;
-      font-size: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 1000;
+      position: fixed; bottom: 20px; right: 20px;
+      background: #ffb74d; padding: 10px 20px;
+      border: none; border-radius: 25px;
+      color: white; font-size: 16px;
+      cursor: pointer; z-index: 1000;
     }
   </style>
 </head>
@@ -75,80 +48,37 @@
       <a href="index.html">Главная</a>
       <a href="boys.html">Для мальчиков</a>
       <a href="girls.html">Для девочек</a>
-      <a href="#">Контакты</a>
     </nav>
   </header>
-
   <div class="main">
     <h1>Добро пожаловать в Kids Toys!</h1>
-    <div class="section">
-      <a href="boys.html">Игрушки для мальчиков</a>
-      <a href="girls.html">Игрушки для девочек</a>
-    </div>
+    <a href="boys.html">Игрушки для мальчиков</a>
+    <a href="girls.html">Игрушки для девочек</a>
   </div>
+  <footer>&copy; 2025 Kids Toys. Все права защищены.</footer>
 
-  <footer>
-    &copy; 2025 Kids Toys. Все права защищены.
-  </footer>
-
-  <button class="chatbot-button">🤖 Ассистент</button>
+  <button class="chatbot-button" id="chatToggle">🤖 Ассистент</button>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const chatbotButton = document.querySelector('.chatbot-button');
-      const chatBox = document.createElement('div');
-      chatBox.style.position = 'fixed';
-      chatBox.style.bottom = '90px';
-      chatBox.style.right = '20px';
-      chatBox.style.width = '300px';
-      chatBox.style.maxHeight = '400px';
-      chatBox.style.background = '#fff';
-      chatBox.style.border = '1px solid #ccc';
-      chatBox.style.borderRadius = '10px';
-      chatBox.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
-      chatBox.style.overflow = 'hidden';
-      chatBox.style.display = 'none';
-      chatBox.style.flexDirection = 'column';
-      chatBox.style.zIndex = '1000';
+    const chatbotButton = document.getElementById('chatToggle');
+    let lastMsg = 0;
 
-      chatBox.innerHTML = `
-        <div style="background:#ffb74d;padding:10px;color:white;font-weight:bold;">Ассистент</div>
-        <div id="chatContent" style="padding:10px;height:250px;overflow-y:auto;font-size:14px;"></div>
-        <div style="display:flex;border-top:1px solid #eee;">
-          <input id="chatInput" type="text" placeholder="Ваш вопрос..." style="flex:1;padding:10px;border:none;outline:none;" />
-          <button id="sendBtn" style="padding:10px;background:#ffa726;color:white;border:none;cursor:pointer;">📤</button>
-        </div>
-      `;
-      document.body.appendChild(chatBox);
-
-      chatbotButton.addEventListener('click', () => {
-        chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
-      });
-
-      const sendBtn = chatBox.querySelector('#sendBtn');
-      const chatInput = chatBox.querySelector('#chatInput');
-      const chatContent = chatBox.querySelector('#chatContent');
-
-      const replies = [
-        'Попробуйте машинку на пульте — топ для мальчиков!',
-        'Для девочек подойдут куклы или наборы для творчества.',
-        'У нас есть игрушки на любой возраст!',
-        'Вы можете оформить заказ и мы доставим его по РК.',
-        'Любимые игрушки есть в разделе «Избранное»!'
-      ];
-
-      sendBtn.addEventListener('click', () => {
-        const userMsg = chatInput.value.trim();
-        if (!userMsg) return;
-        chatContent.innerHTML += `<div><b>Вы:</b> ${userMsg}</div>`;
-        chatInput.value = '';
-        setTimeout(() => {
-          const reply = replies[Math.floor(Math.random() * replies.length)];
-          chatContent.innerHTML += `<div><b>Ассистент:</b> ${reply}</div>`;
-          chatContent.scrollTop = chatContent.scrollHeight;
-        }, 700);
-      });
+    chatbotButton.addEventListener('click', () => {
+      alert("Здравствуйте! Нужна помощь с выбором игрушек?");
     });
+
+    setInterval(() => {
+      if (document.hasFocus()) {
+        const msgs = [
+          "👋 Здравствуйте! Хотите подобрать подарок?",
+          "🎁 Нужна помощь с выбором игрушки?",
+          "🚚 Мы доставим по всему Казахстану!",
+        ];
+        if (lastMsg >= msgs.length) lastMsg = 0;
+        alert(msgs[lastMsg]);
+        lastMsg++;
+      }
+    }, 10000);
   </script>
 </body>
 </html>
